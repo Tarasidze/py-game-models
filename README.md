@@ -1,59 +1,51 @@
-# Game models
+Game Models for a Django-based Game
+Description
 
-Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before starting.
+The Game Models for a Django-based Game project involves the development of crucial database models necessary for a game using the Django web framework. The primary focus is on creating a solid foundation for player interactions within the game world. This includes the ability for players to choose distinct races, each with their own unique set of skills, as well as the option to join guilds. By implementing these fundamental models, the project aims to facilitate core gameplay mechanics and features.
+Technology Used
 
-Imagine you want to create a game using Django. 
-You should create models for it first. 
+    Python
+    Django
 
+Components
+Race Model
 
-## First task:
-In `db/models.py` create the following models:
+Players are provided with a variety of races to select from, such as Elf, Dwarf, Human, or Ork. The Race model is structured to encompass these race options, with the following attributes:
 
-#### 1. Race
-Each player should choose a race to play, such as Elf, Dwarf, Human, or Ork.
-`Race` has the following fields:
-- `name` - a *unique* char field with the maximum length of 255 characters.
-- `description` - a text field, can be blank.
+    name: A unique character field allowing a maximum of 255 characters to store the name of the race.
+    description: A text field that can be left blank, intended to provide additional information about the race.
 
-#### 2. Skill
-Each race has unique skills. Create a model `Skill` for them.
-Each skill has:
-- `name` - a *unique* char field with a maximum length of 255 characters.
-- `bonus` - a char field with a maximum length of 255 characters. 
-This field describes what kind of bonus players can get from it. 
-- `race` - a foreign key that points to the `Race` model. It shows which race has the corresponding skill.
+Skill Model
 
-#### 3. Guild
-The player has an opportunity to become a member of a guild. 
-It has:
-- `name` - a *unique* char field with the maximum length of 255 characters.
-- `description` - a text field, can be null.
+Each race possesses a distinct set of skills that contribute to the gameplay experience. The Skill model encapsulates these skills, featuring the following properties:
 
+    name: A unique character field, allowing up to 255 characters for the name of the skill.
+    bonus: A character field with a maximum length of 255 characters, describing the benefits that players can acquire from the skill.
+    race: A foreign key reference to the Race model, establishing a link between skills and the races that possess them.
 
-#### 4. Player model
-And finally, a `Player` model.
-It should have the following fields:
-- `nickname` - a *unique* char field with a maximum length of 255 characters.
-- `email` - an email field with a maximum length of 255 characters.
-- `bio` - a char field with a maximum length of 255 characters. 
-It stores a short description provided by a user about himself/herself.
-- `race` - a foreign key that points to the `Race` model and shows 
-the race of the player.
-- `guild` - a foreign key that points to the `Guild` model and stores
-an id of the guild the player is a member of. 
-**Please note:** player should not be deleted when the guild is deleted.
-- `created_at` - a DateTime field, that is set with the current time by default.
+Guild Model
 
+The game provides players with the opportunity to affiliate themselves with various guilds, fostering community and cooperation. The Guild model represents these guilds and includes the following attributes:
 
-## Second Task:
+    name: A unique character field allowing a maximum of 255 characters to store the guild's name.
+    description: A text field that can be left blank, providing a brief overview of the guild.
 
-Implement function `main()` in `main.py`:
+Player Model
 
-Read data about players from `players.json` and add the corresponding entries to the database.
-Note, that some guilds, races and skills are used for different players. Create only one
-instance for each guild, race and skill, do not copy them.
+At the core of player interaction lies the Player model, which captures individual player information and choices. The model encompasses the following properties:
 
-**Note**: You can check, if some record already exists using 
-`Model.objects.filter(some_field="data").exists()` (returns `True` or `False`)
+    nickname: A unique character field with a maximum length of 255 characters, representing the player's chosen nickname.
+    email: An email field with a maximum length of 255 characters, facilitating communication with players.
+    bio: A character field allowing up to 255 characters, providing a concise player-provided self-description.
+    race: A foreign key reference to the Race model, indicating the player's selected race.
+    guild: A foreign key reference to the Guild model, storing the ID of the player's associated guild. Importantly, player data remains intact even if the guild is deleted.
+    created_at: A DateTime field set to the current time by default, capturing the player's registration timestamp.
 
-### Note: Check your code using this [checklist](checklist.md) before pushing your solution.
+Project Tasks
+
+The project is divided into tasks, each contributing to the overall completion of the game models. Detailed tasks can be found in the project's documentation.
+Checklist
+
+Before submitting your solution, make sure to review the provided checklist to ensure that all project aspects are in order.
+
+This project serves not only as the backbone for the game's mechanics but also as a practical example of Django's model system and its ability to shape and manage critical gameplay elements.
